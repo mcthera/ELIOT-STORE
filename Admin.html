@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — My Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="product.html">Products</a>
+        <a href="contact.html">Contact</a>
+        <a href="#" id="nav-logout-link" class="admin-btn">Logout</a>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div>
+                <h1>ELIOT Admin Dashboard</h1>
+                <p>Manage products: add, delete, and update prices. Changes sync to public product page.</p>
+            </div>
+            <div class="admin-action-row">
+                <button id="logout-btn" class="secondary-btn" type="button">Logout</button>
+            </div>
+        </section>
+
+        <div id="message-box" class="message-box"></div>
+        <div class="sync-row">
+            <div id="sync-status" class="sync-status"></div>
+            <button id="sync-now-btn" class="secondary-btn sync-action-btn">Sync Now</button>
+        </div>
+
+        <section class="filter-section">
+            <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+            <select id="categorySelect" onchange="filterProducts()">
+                <option value="all">All Categories</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Food">Food</option>
+                <option value="Beauty">Beauty</option>
+            </select>
+        </section>
+
+        <section id="product-container" aria-live="polite"></section>
+
+        <section id="admin-panel" class="admin-panel show">
+            <h2>Admin Tools</h2>
+            <p>Add and manage products below. Price updates reflect on the public page.</p>
+            <form id="admin-tool-form" class="admin-form">
+                <input type="text" id="prod-name" placeholder="Product Name" required>
+                <input type="number" id="prod-price" placeholder="Price" required>
+                <input type="text" id="prod-category" placeholder="Category" required>
+                <input type="text" id="prod-description" placeholder="Description">
+                <input type="file" id="prod-image-file" accept="image/*">
+                <input type="text" id="prod-image" placeholder="Or paste an image URL">
+                <button id="add-product-btn" type="submit" class="primary-btn">Add Product</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 My Store. Admin panel.</p>
+    </footer>
+
+    <div id="image-modal" class="image-modal" onclick="closeImageModal()">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <button type="button" class="modal-close" onclick="closeImageModal()" aria-label="Close image">×</button>
+            <img id="modal-image" src="" alt="Selected product image">
+        </div>
+    </div>
+
+    <!-- Edit product modal -->
+    <div id="edit-modal" class="edit-modal" aria-hidden="true">
+        <div class="edit-modal-content" role="dialog" aria-modal="true" aria-labelledby="edit-modal-title">
+            <button type="button" class="modal-close" onclick="closeEditModal()" aria-label="Close">×</button>
+            <h3 id="edit-modal-title">Edit Product</h3>
+            <form id="edit-form" class="admin-form" onsubmit="event.preventDefault(); saveEditProduct();">
+                <input type="hidden" id="edit-id">
+                <label for="edit-name">Name</label>
+                <input id="edit-name" type="text" required>
+                <label for="edit-price">Price</label>
+                <input id="edit-price" type="number" step="0.01" required>
+                <label for="edit-category">Category</label>
+                <input id="edit-category" type="text" required>
+                <label for="edit-description">Description</label>
+                <input id="edit-description" type="text">
+                <div style="display:flex;gap:8px;margin-top:12px;">
+                    <button id="edit-save-btn" class="primary-btn" type="submit">Save</button>
+                    <button id="edit-cancel-btn" class="secondary-btn" type="button" onclick="closeEditModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+    <script>
+        // Protect admin page
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof ensureAdminAccess === 'function') {
+                ensureAdminAccess();
+            }
+        });
+    </script>
+</body>
+</html>

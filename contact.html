@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get in touch with My Store for product questions, custom orders, and customer support.">
+    <meta name="keywords" content="contact store, customer support, product inquiry, ecommerce contact">
+    <meta name="author" content="My Store">
+    <title>My Store | Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="product.html">Products🛒</a>
+        <a href="contact.html" class="active">Contact</a>
+    </nav>
+
+    <main>
+        <section class="contact-layout">
+            <article class="feature-card">
+                <h2>Contact Details</h2>
+                <p><strong>Email:</strong> ntiyeboahelliot822@gmail.com</p>
+                <p><strong>Phone:</strong> 0532538446/ 0200500804</p>
+                <p><strong>Hours:</strong>24/7</p>
+            </article>
+
+            <article class="feature-card">
+                <h2>Send us a Message</h2>
+
+                        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                            
+                            <input type="hidden" name="access_key" value="010c6635-3492-4c5d-a7ee-69f7092c0c3b">
+
+                            <input type="text" name="name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                            <textarea name="message" placeholder="How can I help you?" rows="5" required></textarea>
+                            
+                            <button type="submit" class="primary-btn">Send Message</button>
+                        </form>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 🧢🤍👖Elite Foot and Fashion🛒.  <div class="social-buttons">
+    <a href="https://wa.me/+233200500804" target="_blank" class="whatsapp-btn">
+        Chat on WhatsApp
+    </a>
+
+    <a href="https://tiktok.com/@yourusername" target="_blank" class="tiktok-btn" style="text-decoration: none;">
+        Follow on TikTok
+    </a>
+</div></p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').onsubmit = (e) => {
+            e.preventDefault();
+            alert('Thanks! Your message has been sent.');
+            e.target.reset();
+        };
+    </script>
+</body>
+</html>

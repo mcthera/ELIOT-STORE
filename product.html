@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse quality products at My Store, filter by category, and discover featured items for everyday needs.">
+    <meta name="keywords" content="shop products, ecommerce catalog, online shopping, store products">
+    <meta name="author" content="My Store">
+    <title>My Store | Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Products🛒</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html" class="admin-btn">👨‍💼</a>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div>
+                <h1>OUR HANDMADE PRODUCTS</h1>
+                <p>Browse featured items and shop with confidence.</p>
+                <p id="product-count" class="product-count"></p>
+            </div>
+            <div class="admin-action-row">
+                <a id="login-btn" class="secondary-btn" href="login.html" style="text-decoration: none;">👨‍💼</a>
+                <button id="logout-btn" class="secondary-btn" style="display:none;">Logout</button>
+            </div>
+        </section>
+
+        <div id="message-box" class="message-box" style="display:none;"></div>
+        <div class="sync-row" style="display:none;">
+            <div id="sync-status" class="sync-status"></div>
+            <button id="sync-now-btn" class="secondary-btn sync-action-btn">Sync Now</button>
+        </div>
+
+        <section class="filter-section">
+            <input type="text" id="search-input" placeholder="Search products..." oninput="filterProducts()">
+            <select id="category-filter" onchange="filterProducts()">
+                <option value="All">All Categories</option>
+                <option value="Electronics">Electronics</option>
+                <option value="clothing">clothing</option>
+                <option value="shoes">shoes</option>
+                <option value="others">others</option>
+            </select>
+        </section>
+
+        <section id="product-container" aria-live="polite"></section>
+
+        <!-- Admin tools moved to admin.html. Admin-only controls are hidden from customers. -->
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 🧢🤍👖Elite Foot and Fashion. All rights reserved🛒. </p>
+        <div class="social-buttons">
+            <a href="https://wa.me/+233200500804" target="_blank" class="whatsapp-btn">Chat on WhatsApp</a>
+            <a href="https://tiktok.com/@yourusername" target="_blank" class="tiktok-btn">Follow on TikTok</a>
+        </div>
+    </footer>
+
+    <div id="image-modal" class="image-modal" onclick="closeImageModal()">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <button type="button" class="modal-close" onclick="closeImageModal()" aria-label="Close image">×</button>
+            <img id="modal-image" src="" alt="Selected product image">
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

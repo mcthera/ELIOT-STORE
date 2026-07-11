@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure admin login for My Store product and inventory management.">
+    <meta name="keywords" content="admin login, store management, ecommerce admin">
+    <meta name="author" content="My Store">
+    <title>My Store | Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="product.html">Products🛒</a>
+        <a href="contact.html">Contact</a>
+        <a href="document.html">&#128196</a>
+    </nav>
+
+    <main>
+        <section class="login-shell">
+            <div class="login-card">
+                <div class="login-card__header">
+                    <div class="login-icon">📄</div>
+                    <div>
+                        <h1>ELIOT Admin Access</h1>
+                        <p>Sign in to manage products, prices, and inventory.</p>
+                    </div>
+                </div>
+
+                <form id="adminLoginForm" class="login-form">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter username" autocomplete="username" required>
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" autocomplete="current-password" required>
+
+                    <button type="submit" class="primary-btn">Login</button>
+                </form>
+
+                <div id="login-message" class="message-box"></div>
+
+                <div class="login-help">
+                    <p>Can't access the admin panel?</p>
+                    <a href="document.html">Open support & terms <span>&#128196;🔐</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 My Store. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const ADMIN_CREDENTIALS = { username: 'AKWASI', password: '1110' };
+
+        function showLoginMessage(message, type = 'error') {
+            const box = document.getElementById('login-message');
+            if (!box) return;
+            box.textContent = message;
+            box.className = `message-box ${type} show`;
+
+            window.clearTimeout(showLoginMessage.timeoutId);
+            showLoginMessage.timeoutId = window.setTimeout(() => {
+                box.textContent = '';
+                box.className = 'message-box';
+            }, 5000);
+        }
+
+        function checkAdminRedirect() {
+            if (sessionStorage.getItem('isAdmin') === 'true') {
+                window.location.href = 'admin.html';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAdminRedirect();
+
+            const form = document.getElementById('adminLoginForm');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const user = document.getElementById('username').value.trim();
+                const pass = document.getElementById('password').value;
+
+                if (user === ADMIN_CREDENTIALS.username && pass === ADMIN_CREDENTIALS.password) {
+                    sessionStorage.setItem('isAdmin', 'true');
+                    window.location.href = 'admin.html';
+                } else {
+                    showLoginMessage('Invalid credentials. Please try again.', 'error');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
