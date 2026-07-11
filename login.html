@@ -70,7 +70,7 @@
 
         function checkAdminRedirect() {
             if (sessionStorage.getItem('isAdmin') === 'true') {
-                window.location.href = 'admin.html';
+                window.location.href = 'Admin.html';
             }
         }
 
@@ -86,7 +86,7 @@
 
                 if (user === ADMIN_CREDENTIALS.username && pass === ADMIN_CREDENTIALS.password) {
                     sessionStorage.setItem('isAdmin', 'true');
-                    window.location.href = 'admin.html';
+                    window.location.href = 'Admin.html';
                 } else {
                     showLoginMessage('Invalid credentials. Please try again.', 'error');
                 }
